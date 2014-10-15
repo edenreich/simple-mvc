@@ -38,7 +38,8 @@ class View
             [
                 'cache' => INC_ROOT . '/app/cache',
             ]);
-        $this->twig->addGlobal('ASSET_ROOT', ASSET_ROOT);    
+        $this->twig->addGlobal('ASSET_ROOT', ASSET_ROOT);
+        $this->twig->addGlobal('HTTP_ROOT', HTTP_ROOT);
     }
 
     /**
