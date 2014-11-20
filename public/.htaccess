@@ -2,7 +2,7 @@ Options -MultiViews
 Options -Indexes
 
 RewriteEngine On
-RewriteBase /simple-mvc/public
+RewriteBase /
 
 RewriteCond %{ENV:REDIRECT_STATUS} ^$
 RewriteCond %{REQUEST_FILENAME} !-d
