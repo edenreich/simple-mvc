@@ -7,6 +7,10 @@
  * and calls the chosen controller and method after splitting the URL.
  *
  */
+
+use Whoops\Run as WhoopsRun;
+use Whoops\Handler\PrettyPageHandler as WhoopsPrettyPageHandler;
+
 class App
 {
     /**
@@ -32,6 +36,8 @@ class App
     {
         // Get broken up URL
         $url = $this->parseUrl();
+        // Error Handler Init
+        $this->initWhoopsErrorHandler();
 
         // Does the requested controller exist?
         // If so, set it and unset from URL array
@@ -61,6 +67,22 @@ class App
         // in the parameters array (or empty array if above was false)
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
+
+    /**
+     * Send any Exceptions or PHP errors to the Whoops! Error Handler
+     *
+     * @return $this
+     */    
+    public function initWhoopsErrorHandler()
+    {
+        $whoops = new WhoopsRun();
+        $handler = new WhoopsPrettyPageHandler();
+
+        $whoops->pushHandler($handler)->register();
+
+        return $this;
+    }
+
 
     /**
      * Parse the URL for the current request. Effectivly splits it, stores the controller
