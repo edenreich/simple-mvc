@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 /**
  * The application class.
  *
@@ -13,6 +15,13 @@ use Whoops\Handler\PrettyPageHandler as WhoopsPrettyPageHandler;
 
 class App
 {
+    /**
+     * Stores all the configurations.
+     *
+     * @var array
+     */
+    protected $config = [];
+
     /**
      * Stores the controller from the split URL
      *
@@ -32,8 +41,11 @@ class App
      */
     protected $params = [];
 
-    public function __construct()
+    public function __construct(Config $config)
     {
+        // make the config is accessable within the app
+        $this->config = $config;
+
         // Get broken up URL
         $url = $this->parseUrl();
         // Error Handler Init

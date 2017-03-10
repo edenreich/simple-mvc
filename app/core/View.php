@@ -1,5 +1,15 @@
 <?php
 
+namespace App\Core;
+
+use Twig_Loader_Filesystem;
+
+/**
+ * The view class.
+ *
+ * The view class renders html pages. 
+ *
+ */
 class View
 {
     /**
@@ -32,12 +42,13 @@ class View
     {
         $this->file = $file;
         $this->data = $data;
-
+        
         $twigLoader = new Twig_Loader_Filesystem(INC_ROOT . '/app/views', '__main__');
         $this->twig = new Twig_Environment($twigLoader,
             [
                 'cache' => INC_ROOT . '/app/cache',
             ]);
+
         $this->twig->addGlobal('ASSET_ROOT', ASSET_ROOT);
         $this->twig->addGlobal('HTTP_ROOT', HTTP_ROOT);
     }

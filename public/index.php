@@ -2,4 +2,6 @@
 
 require_once '../app/start.php';
 
-$app = new App();
+use App\Core\App;
+
+$app = new App($config);

@@ -1,5 +1,7 @@
 <?php
 
+use App\Core\Controller;
+
 /**
  * The default home controller, called when no controller/method has been passed
  * to the application.
